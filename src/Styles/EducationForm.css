@@ -1,0 +1,36 @@
+form {
+  display: flex;
+  flex: 1;
+  gap: 1rem;
+  flex-direction: column;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 0 0 1rem 1rem;
+}
+
+label {
+  font-family: "Roboto Slab", "Courier New", Courier, monospace;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+input {
+  margin: 0;
+  border: 0;
+  background-color: #f3f4f6;
+  font-family: "Roboto Slab", "Courier New", Courier, monospace;
+  font-size: 1.1rem;
+  font-weight: 400;
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
+form > div {
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+}
+
+.dates {
+  display: flex;
+  flex-direction: row;
+}

@@ -1,0 +1,16 @@
+#education-collapse-section {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  border-radius: 0 0 1rem 1rem;
+  padding: 1rem;
+}
+
+#education-add-button {
+  border: 0.2rem solid #f3f4f6;
+  margin: 0;
+  background-color: white;
+  border-radius: 1rem;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+}
