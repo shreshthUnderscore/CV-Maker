@@ -1,12 +1,11 @@
 import { useState } from "react";
-import LeftPanel from "./Components/sidebar/leftPanel";
-import RightPanel from "./Components/resume/rightPanel";
-import "./Styles/App.css";
+import Sidebar from "./Components/Sidebar/Sidebar";
+import RightPanel from "./Components/RightPanel/RightPanel";
 
 export default function App() {
   return (
     <>
-      <LeftPanel></LeftPanel>
+      <Sidebar></Sidebar>
       <RightPanel></RightPanel>
     </>
   );

@@ -1,4 +1,4 @@
-import "../Styles/EducationForm.css";
+import "./EducationForm.module.css";
 
 export default function EducationForm({ id }) {
   return (

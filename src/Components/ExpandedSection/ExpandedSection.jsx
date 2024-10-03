@@ -1,5 +1,5 @@
-import AddButton from "./AddButton";
-import "../Styles/ExpandedSection.css";
+import AddButton from "../AddButton/AddButton";
+import "./ExpandedSection.module.css";
 
 export default function ExpandedSection({
   collapseId,

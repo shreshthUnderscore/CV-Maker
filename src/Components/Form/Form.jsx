@@ -1,4 +1,4 @@
-import "../Styles/form.css";
+import "./Form.module.css";
 
 export default function Form({ id }) {
   return (

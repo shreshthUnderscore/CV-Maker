@@ -2,7 +2,7 @@
 //   return <button key={text}>{text}</button>;
 // }
 
-import "../Styles/rightPanel.css";
+import "./RightPanel.module.css";
 
 export default function RightPanel() {
   return (

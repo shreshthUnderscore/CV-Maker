@@ -1,8 +1,9 @@
-import "../Styles/leftPanel.css";
-import CustomButton from "./customButton";
-import Form from "./form";
-import ExpandedSection from "./ExpandedSection";
-import EducationForm from "./EducationForm";
+import "./Sidebar.module.css";
+
+import CustomButton from "../CustomButton/customButton";
+import Form from "../form/Form";
+import EducationForm from "../EducationForm/EducationForm";
+import ExpandedSection from "../ExpandedSection/ExpandedSection";
 
 function buttonEventHandler(buttonId, hiddenSectionId) {
   const buttonElement = document.querySelector(buttonId);
@@ -26,7 +27,7 @@ function newFieldHandler(openElement, closedForm) {
   closedFormElement.style.display = "flex";
 }
 
-export default function LeftPanel() {
+export default function Sidebar() {
   return (
     <>
       <div className="leftPanel">
