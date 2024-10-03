@@ -1,12 +1,12 @@
 import { useState } from "react";
 import Sidebar from "./Components/Sidebar/Sidebar";
-import RightPanel from "./Components/RightPanel/RightPanel";
+import ResumeSection from "./Components/ResumeSection/ResumeSection";
 
 export default function App() {
   return (
     <>
       <Sidebar></Sidebar>
-      <RightPanel></RightPanel>
+      <ResumeSection></ResumeSection>
     </>
   );
 }

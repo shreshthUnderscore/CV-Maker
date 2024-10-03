@@ -1,5 +1,6 @@
+import styles from "./CustomButton.module.css";
+
 export default function CustomButton({
-  btnClass,
   id,
   text,
   onClick,
@@ -7,12 +8,12 @@ export default function CustomButton({
   iconExpand,
 }) {
   return (
-    <button className={btnClass} id={id} onClick={onClick}>
-      <span id="button-text">
+    <button className={styles.CustomButton} id={id} onClick={onClick}>
+      <span className={styles.spanElement}>
         <img id="detail-icon" src={iconDetail}></img>
         {text}
       </span>
-      <img id="expand-icon" src={iconExpand}></img>
+      <img className={styles.expandIcon} src={iconExpand}></img>
     </button>
   );
 }

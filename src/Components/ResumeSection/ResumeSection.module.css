@@ -1,5 +1,6 @@
-.rightPanel {
+.ResumeSection {
   display: flex;
-  flex: 2;
+  width: 100%;
+  flex: 3;
   background-color: black;
 }

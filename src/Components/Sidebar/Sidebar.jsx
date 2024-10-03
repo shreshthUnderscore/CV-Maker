@@ -1,7 +1,7 @@
-import "./Sidebar.module.css";
+import styles from "./Sidebar.module.css";
 
 import CustomButton from "../CustomButton/customButton";
-import Form from "../form/Form";
+import Form from "../Form/Form";
 import EducationForm from "../EducationForm/EducationForm";
 import ExpandedSection from "../ExpandedSection/ExpandedSection";
 
@@ -30,12 +30,11 @@ function newFieldHandler(openElement, closedForm) {
 export default function Sidebar() {
   return (
     <>
-      <div className="leftPanel">
+      <div className={styles.Sidebar}>
         <div>
           <CustomButton
             text="Personal Details"
             id="personal-details"
-            btnClass="customButtons"
             onClick={() =>
               buttonEventHandler("#personal-details", "#personal-details-form")
             }
@@ -49,7 +48,6 @@ export default function Sidebar() {
           <CustomButton
             text="Education"
             id="education-details"
-            btnClass="customButtons"
             iconDetail="src/assets/education-icon.svg"
             iconExpand="src/assets/expand-icon.svg"
             onClick={() =>
@@ -72,14 +70,15 @@ export default function Sidebar() {
           />
           <EducationForm id="education-hidden-form" />
         </div>
-
-        <CustomButton
-          text="Experience"
-          id="experience-details"
-          btnClass="customButtons"
-          iconDetail="src/assets/experience-icon.svg"
-          iconExpand="src/assets/expand-icon.svg"
-        />
+        <div>
+          <CustomButton
+            text="Experience"
+            id="experience-details"
+            btnClass="customButtons"
+            iconDetail="src/assets/experience-icon.svg"
+            iconExpand="src/assets/expand-icon.svg"
+          />
+        </div>
       </div>
     </>
   );
