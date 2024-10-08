@@ -4,30 +4,41 @@ import CustomButton from "../CustomButton/customButton";
 import Form from "../Form/Form";
 import EducationForm from "../EducationForm/EducationForm";
 import ExpandedSection from "../ExpandedSection/ExpandedSection";
+import { useState } from "react";
 
-function buttonEventHandler(buttonId, hiddenSectionId) {
-  const buttonElement = document.querySelector(buttonId);
+export default function Sidebar({ personalData, setPersonalDetails }) {
+  const [isPersonalDetailsFormVisible, setPersonalDetailsVisibility] =
+    useState(false);
+  const [isEducationDetailsVisible, setEducationDetailsVisibility] =
+    useState(false);
+  const [isEducationFormVisible, setEducationFormVisibility] = useState(false);
+  const [isExperienceDetailsVisible, setExperienceVisibility] = useState(false);
+  const [isExperienceFormVisible, setExperienceFormVisibility] =
+    useState(false);
 
-  const hiddenSectionElement = document.querySelector(hiddenSectionId);
+  const togglePersonalDetailsForm = () => {
+    setPersonalDetailsVisibility((visibility) => !visibility);
+  };
+  const toggleEducationDetailsForm = () => {
+    setEducationDetailsVisibility((visibility) => !visibility);
+  };
+  const toggleEducationForm = () => {
+    setEducationFormVisibility((visibility) => !visibility);
+  };
+  const toggleExperienceDetails = () => {
+    setExperienceVisibility((visibility) => !visibility);
+  };
+  const toggleExperienceDetailsForm = () => {
+    setExperienceFormVisibility((visibility) => !visibility);
+  };
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setPersonalDetails((prevDetails) => ({
+      ...prevDetails,
+      [name]: value,
+    }));
+  };
 
-  buttonElement.classList.toggle("open");
-
-  if (hiddenSectionElement.style.display === "none") {
-    hiddenSectionElement.style.display = "flex";
-  } else {
-    hiddenSectionElement.style.display = "none";
-  }
-}
-
-function newFieldHandler(openElement, closedForm) {
-  const openFieldElement = document.querySelector(openElement);
-  const closedFormElement = document.querySelector(closedForm);
-
-  openFieldElement.style.display = "none";
-  closedFormElement.style.display = "flex";
-}
-
-export default function Sidebar() {
   return (
     <>
       <div className={styles.Sidebar}>
@@ -35,13 +46,17 @@ export default function Sidebar() {
           <CustomButton
             text="Personal Details"
             id="personal-details"
-            onClick={() =>
-              buttonEventHandler("#personal-details", "#personal-details-form")
-            }
+            onClick={togglePersonalDetailsForm}
             iconDetail="src/assets/personal-details-icon.svg"
             iconExpand="src/assets/expand-icon.svg"
+            isPressed={isPersonalDetailsFormVisible}
           />
-          <Form id="personal-details-form" />
+          {isPersonalDetailsFormVisible && (
+            <Form
+              formData={personalData}
+              handleInputChange={handleInputChange}
+            />
+          )}
         </div>
 
         <div>
@@ -50,25 +65,23 @@ export default function Sidebar() {
             id="education-details"
             iconDetail="src/assets/education-icon.svg"
             iconExpand="src/assets/expand-icon.svg"
-            onClick={() =>
-              buttonEventHandler(
-                "#education-details",
-                "#education-collapse-section"
-              )
-            }
+            onClick={toggleEducationDetailsForm}
+            isPressed={isEducationDetailsVisible}
           />
-          <ExpandedSection
-            collapseId="education-collapse-section"
-            buttonId="education-add-button"
-            buttonText="Add Field"
-            onClick={() =>
-              newFieldHandler(
-                "#education-collapse-section",
-                "#education-hidden-form"
-              )
-            }
-          />
-          <EducationForm id="education-hidden-form" />
+
+          {isEducationDetailsVisible && (
+            <>
+              {!isEducationFormVisible && isEducationDetailsVisible && (
+                <ExpandedSection
+                  buttonText="Add Field"
+                  onClick={toggleEducationForm}
+                />
+              )}
+              {isEducationFormVisible && (
+                <EducationForm id="education-hidden-form" />
+              )}
+            </>
+          )}
         </div>
         <div>
           <CustomButton
@@ -77,7 +90,25 @@ export default function Sidebar() {
             btnClass="customButtons"
             iconDetail="src/assets/experience-icon.svg"
             iconExpand="src/assets/expand-icon.svg"
+            onClick={toggleExperienceDetails}
+            isPressed={isExperienceDetailsVisible}
           />
+
+          {isExperienceDetailsVisible && (
+            <>
+              {!isExperienceFormVisible && isExperienceDetailsVisible && (
+                <ExpandedSection
+                  collapseId="experience-collapse-section"
+                  buttonId="experience-add-button"
+                  buttonText="Add Field"
+                  onClick={toggleExperienceDetailsForm}
+                />
+              )}
+              {isExperienceFormVisible && (
+                <EducationForm id="experiences-hidden-form" />
+              )}
+            </>
+          )}
         </div>
       </div>
     </>

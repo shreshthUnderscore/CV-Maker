@@ -1,6 +1,5 @@
 import AddButton from "../AddButton/AddButton";
-import "./ExpandedSection.module.css";
-
+import styles from "./ExpandedSection.module.css";
 export default function ExpandedSection({
   collapseId,
   buttonId,
@@ -8,9 +7,9 @@ export default function ExpandedSection({
   onClick,
 }) {
   return (
-    <div id={collapseId} style={{ display: "none" }}>
+    <div className={styles.ExpandedSection}>
       <AddButton
-        id={buttonId}
+        className={styles.AddButton}
         buttonText={buttonText}
         onClick={onClick}
       ></AddButton>

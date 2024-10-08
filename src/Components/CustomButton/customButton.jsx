@@ -6,9 +6,14 @@ export default function CustomButton({
   onClick,
   iconDetail,
   iconExpand,
+  isPressed,
 }) {
   return (
-    <button className={styles.CustomButton} id={id} onClick={onClick}>
+    <button
+      className={`${styles.CustomButton} ${isPressed ? styles.pressed : ""}`}
+      id={id}
+      onClick={onClick}
+    >
       <span className={styles.spanElement}>
         <img id="detail-icon" src={iconDetail}></img>
         {text}

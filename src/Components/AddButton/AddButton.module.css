@@ -1,0 +1,15 @@
+.AddButton {
+  display: flex;
+  align-content: center;
+  border: 0.3rem solid #f3f4f6;
+  padding: 0.7rem;
+  margin: 0;
+  border-radius: 2rem;
+  font-family: "Roboto Slab", "Courier New", Courier, monospace;
+  background-color: white;
+}
+
+.span {
+  display: flex;
+  align-items: center;
+}

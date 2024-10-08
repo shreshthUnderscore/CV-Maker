@@ -1,8 +1,8 @@
-import "./EducationForm.module.css";
+import styles from "./EducationForm.module.css";
 
 export default function EducationForm({ id }) {
   return (
-    <div id={id} style={{ display: "none" }}>
+    <div id={id}>
       <form>
         <div className="school">
           <label>School</label>
@@ -12,7 +12,7 @@ export default function EducationForm({ id }) {
           <label>Degree</label>
           <input></input>
         </div>
-        <div className="dates">
+        <div className={styles.dates}>
           <div>
             <label>Start Date</label>
             <input></input>
@@ -25,6 +25,15 @@ export default function EducationForm({ id }) {
         <div className="location">
           <label>Location</label>
           <input></input>
+        </div>
+        <div className={styles.buttons}>
+          <button className={styles.savebtn} type="submit" value="Submit">
+            Submit
+          </button>
+
+          <button className={styles.cancelbtn} type="cancel" value="Cancel">
+            Cancel
+          </button>
         </div>
       </form>
     </div>
