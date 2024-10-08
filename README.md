@@ -1,4 +1,4 @@
-#live preview
+# live preview
 [CV Maker](https://cv-maker-sand.vercel.app/)
 
 # React + Vite
