@@ -1,4 +1,6 @@
+import { useState } from "react";
 import styles from "./CustomButton.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function CustomButton({
   id,
@@ -6,19 +8,31 @@ export default function CustomButton({
   onClick,
   iconDetail,
   iconExpand,
+  iconCollapse,
   isPressed,
 }) {
+  const [activeIcon, setActiveIcon] = useState(false);
+
+  const handleClick = () => {
+    setActiveIcon(!activeIcon);
+  };
+
+  const stateFunctionWrapper = () => {
+    if (onClick) onClick();
+    handleClick();
+  };
+
   return (
     <button
       className={`${styles.CustomButton} ${isPressed ? styles.pressed : ""}`}
       id={id}
-      onClick={onClick}
+      onClick={stateFunctionWrapper}
     >
       <span className={styles.spanElement}>
-        <img id="detail-icon" src={iconDetail}></img>
+        <FontAwesomeIcon icon={iconDetail} />
         {text}
       </span>
-      <img className={styles.expandIcon} src={iconExpand}></img>
+      <FontAwesomeIcon icon={activeIcon ? iconCollapse : iconExpand} />
     </button>
   );
 }

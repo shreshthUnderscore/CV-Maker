@@ -5,6 +5,13 @@ import Form from "../Form/Form";
 import EducationForm from "../EducationForm/EducationForm";
 import ExpandedSection from "../ExpandedSection/ExpandedSection";
 import { useState } from "react";
+import {
+  faFileLines,
+  faGraduationCap,
+  faSuitcase,
+  faPlus,
+  faMinus,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function Sidebar({ personalData, setPersonalDetails }) {
   const [isPersonalDetailsFormVisible, setPersonalDetailsVisibility] =
@@ -47,8 +54,9 @@ export default function Sidebar({ personalData, setPersonalDetails }) {
             text="Personal Details"
             id="personal-details"
             onClick={togglePersonalDetailsForm}
-            iconDetail="src/assets/personal-details-icon.svg"
-            iconExpand="src/assets/expand-icon.svg"
+            iconDetail={faFileLines}
+            iconCollapse={faMinus}
+            iconExpand={faPlus}
             isPressed={isPersonalDetailsFormVisible}
           />
           {isPersonalDetailsFormVisible && (
@@ -63,8 +71,9 @@ export default function Sidebar({ personalData, setPersonalDetails }) {
           <CustomButton
             text="Education"
             id="education-details"
-            iconDetail="src/assets/education-icon.svg"
-            iconExpand="src/assets/expand-icon.svg"
+            iconDetail={faGraduationCap}
+            iconExpand={faPlus}
+            iconCollapse={faMinus}
             onClick={toggleEducationDetailsForm}
             isPressed={isEducationDetailsVisible}
           />
@@ -88,8 +97,9 @@ export default function Sidebar({ personalData, setPersonalDetails }) {
             text="Experience"
             id="experience-details"
             btnClass="customButtons"
-            iconDetail="src/assets/experience-icon.svg"
-            iconExpand="src/assets/expand-icon.svg"
+            iconDetail={faSuitcase}
+            iconExpand={faPlus}
+            iconCollapse={faMinus}
             onClick={toggleExperienceDetails}
             isPressed={isExperienceDetailsVisible}
           />
