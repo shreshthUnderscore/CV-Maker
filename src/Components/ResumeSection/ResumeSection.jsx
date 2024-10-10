@@ -1,5 +1,10 @@
 import styles from "./ResumeSection.module.css";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faEnvelope,
+  faPhone,
+  faLocationDot,
+} from "@fortawesome/free-solid-svg-icons";
 export default function ResumeSection({ personalDetails }) {
   return (
     <>
@@ -10,21 +15,21 @@ export default function ResumeSection({ personalDetails }) {
             <div className={styles.ContactInfo}>
               {personalDetails.email && (
                 <span className={styles.Email}>
-                  <img src="src/assets/mail-icon.svg"></img>
+                  <FontAwesomeIcon icon={faEnvelope} />
                   {personalDetails.email}
                 </span>
               )}
 
               {personalDetails.contactNumber && (
                 <span className={styles.ContactNumber}>
-                  <img src="src/assets/contact-icon.svg"></img>
+                  <FontAwesomeIcon icon={faPhone} />
                   {personalDetails.contactNumber}
                 </span>
               )}
 
               {personalDetails.location && (
                 <span className={styles.Location}>
-                  <img src="src/assets/location-icon.svg"></img>
+                  <FontAwesomeIcon icon={faLocationDot} />
                   {personalDetails.location}
                 </span>
               )}
