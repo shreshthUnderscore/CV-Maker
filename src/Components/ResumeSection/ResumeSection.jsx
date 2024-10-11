@@ -5,7 +5,11 @@ import {
   faPhone,
   faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
-export default function ResumeSection({ personalDetails }) {
+export default function ResumeSection({
+  personalDetails,
+  educationDetails,
+  experienceDetails,
+}) {
   return (
     <>
       <div className={styles.ResumeDiv}>
@@ -36,6 +40,39 @@ export default function ResumeSection({ personalDetails }) {
             </div>
           </div>
           <hr />
+
+          <div className={styles.EducationSection}>
+            <h1>Education</h1>
+            {educationDetails.length > 0
+              ? educationDetails.map((education, index) => (
+                  <div key={index} className="education-item">
+                    <p>School: {education.school}</p>
+                    <p>Degree: {education.degree}</p>
+                    <p>
+                      Dates: {education.startDate} - {education.endDate}
+                    </p>
+                    <p>Location: {education.location}</p>
+                  </div>
+                ))
+              : console.log("no Education Details")}
+          </div>
+
+          <div className={styles.ExperieceSection}>
+            <h1>Experience</h1>
+            {experienceDetails.length > 0
+              ? experienceDetails.map((experience, index) => (
+                  <div key={index}>
+                    <p>School: {experience.companyName}</p>
+                    <p>Degree: {experience.positionTitle}</p>
+                    <p>
+                      Dates: {experience.startDate} - {experience.endDate}
+                    </p>
+                    <p>Location: {experience.location}</p>
+                    <p>Description: {experience.description}</p>
+                  </div>
+                ))
+              : console.log("no experience Details")}
+          </div>
         </div>
       </div>
     </>

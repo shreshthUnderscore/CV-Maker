@@ -1,0 +1,68 @@
+form {
+  width: 100%; /* Ensures the form takes full width of its parent container */
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 0 0 1rem 1rem;
+  box-sizing: border-box; /* Ensures padding is included in width calculation */
+}
+
+label {
+  font-family: "Roboto Slab", "Courier New", Courier, monospace;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+input {
+  margin: 0;
+  border: 0;
+  background-color: #f3f4f6;
+  font-family: "Roboto Slab", "Courier New", Courier, monospace;
+  font-size: 1.1rem;
+  font-weight: 400;
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
+
+form > div {
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+}
+
+.dates {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.dates > div {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0.5rem;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+
+.savebtn,
+.cancelbtn {
+  border: 0;
+  margin: 0;
+  padding: 1rem;
+  border-radius: 2rem;
+}
+
+.savebtn {
+  background-color: greenyellow;
+}
+
+.cancelbtn {
+  background-color: red;
+}

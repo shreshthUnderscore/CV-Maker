@@ -12,8 +12,16 @@ import {
   faPlus,
   faMinus,
 } from "@fortawesome/free-solid-svg-icons";
+import ExperienceFrom from "../ExperienceForm/ExperienceForm";
 
-export default function Sidebar({ personalData, setPersonalDetails }) {
+export default function Sidebar({
+  personalData,
+  setPersonalDetails,
+  educationData,
+  setEducationDetails,
+  experienceData,
+  setExperienceDetails,
+}) {
   const [isPersonalDetailsFormVisible, setPersonalDetailsVisibility] =
     useState(false);
   const [isEducationDetailsVisible, setEducationDetailsVisibility] =
@@ -44,6 +52,14 @@ export default function Sidebar({ personalData, setPersonalDetails }) {
       ...prevDetails,
       [name]: value,
     }));
+  };
+
+  const handleInputEducationChange = (newEducationData) => {
+    setEducationDetails([...educationData, newEducationData]);
+  };
+
+  const handleInputExperienceChange = (newExperienceData) => {
+    setExperienceDetails([...experienceData, newExperienceData]);
   };
 
   return (
@@ -87,7 +103,10 @@ export default function Sidebar({ personalData, setPersonalDetails }) {
                 />
               )}
               {isEducationFormVisible && (
-                <EducationForm id="education-hidden-form" />
+                <EducationForm
+                  handleInputChange={handleInputEducationChange}
+                  toggleFormVisibility={toggleEducationForm}
+                />
               )}
             </>
           )}
@@ -115,7 +134,10 @@ export default function Sidebar({ personalData, setPersonalDetails }) {
                 />
               )}
               {isExperienceFormVisible && (
-                <EducationForm id="experiences-hidden-form" />
+                <ExperienceFrom
+                  handleFormInput={handleInputExperienceChange}
+                  toggleFormVisibility={toggleExperienceDetailsForm}
+                />
               )}
             </>
           )}

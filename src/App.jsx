@@ -10,13 +10,24 @@ export default function App() {
     location: "",
   });
 
+  const [educationDetails, setEducationDetails] = useState([]);
+  const [experienceDetails, setExperienceDetails] = useState([]);
+
   return (
     <>
       <Sidebar
         personalData={personalDetails}
         setPersonalDetails={setPersonalDetails}
+        educationData={educationDetails}
+        setEducationDetails={setEducationDetails}
+        experienceData={educationDetails}
+        setExperienceDetails={setExperienceDetails}
       ></Sidebar>
-      <ResumeSection personalDetails={personalDetails}></ResumeSection>
+      <ResumeSection
+        personalDetails={personalDetails}
+        educationDetails={educationDetails}
+        experienceDetails={experienceDetails}
+      ></ResumeSection>
     </>
   );
 }

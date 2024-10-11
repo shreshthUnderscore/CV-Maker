@@ -1,37 +1,72 @@
+import { useState } from "react";
 import styles from "./EducationForm.module.css";
 
-export default function EducationForm({ id }) {
+export default function EducationForm({
+  handleInputChange,
+  toggleFormVisibility,
+}) {
+  const [school, setSchool] = useState("");
+  const [degree, setDegree] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [score, setScore] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const newEducationDetail = { school, degree, startDate, endDate, score };
+    handleInputChange(newEducationDetail);
+
+    setSchool("");
+    setDegree("");
+    setStartDate("");
+    setEndDate("");
+    setScore("");
+
+    toggleFormVisibility();
+  };
+
+  const handleCancel = (event) => {
+    event.preventDefault();
+    toggleFormVisibility();
+  };
+
   return (
-    <div id={id}>
-      <form>
+    <div>
+      <form onSubmit={handleSubmit}>
         <div className="school">
           <label>School</label>
-          <input></input>
+          <input value={school} onChange={(e) => setSchool(e.target.value)} />
         </div>
         <div className="Degree">
           <label>Degree</label>
-          <input></input>
+          <input value={degree} onChange={(e) => setDegree(e.target.value)} />
         </div>
         <div className={styles.dates}>
           <div>
             <label>Start Date</label>
-            <input></input>
+            <input
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+            />
           </div>
           <div>
             <label>End Date</label>
-            <input></input>
+            <input
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+            />
           </div>
         </div>
-        <div className="location">
-          <label>Location</label>
-          <input></input>
+        <div className="score">
+          <label>Score</label>
+          <input value={score} onChange={(e) => setScore(e.target.value)} />
         </div>
         <div className={styles.buttons}>
-          <button className={styles.savebtn} type="submit" value="Submit">
+          <button className={styles.savebtn} type="submit">
             Submit
           </button>
 
-          <button className={styles.cancelbtn} type="cancel" value="Cancel">
+          <button className={styles.cancelbtn} onClick={handleCancel}>
             Cancel
           </button>
         </div>
