@@ -2,37 +2,50 @@ import { useEffect, useState } from "react";
 import styles from "./EducationForm.module.css";
 
 export default function EducationForm({
-  handleInputChange,
   toggleFormVisibility,
-  currentEducation,
+  currentEducationData,
+  handleEducationInput,
+  addEducationData,
 }) {
-  const [school, setSchool] = useState("");
-  const [degree, setDegree] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [score, setScore] = useState("");
+  const [educationData, setEducationData] = useState({
+    school: "",
+    degree: "",
+    startDate: "",
+    endDate: "",
+    score: "",
+  });
 
   useEffect(() => {
-    if (currentEducation) {
-      setSchool(currentEducation.school);
-      setDegree(currentEducation.degree);
-      setStartDate(currentEducation.startDate);
-      setEndDate(currentEducation.endDate);
-      setScore(currentEducation.score);
+    if (currentEducationData) {
+      setEducationData(currentEducationData);
     }
-  }, [currentEducation]);
+  }, [currentEducationData]);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setEducationData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+
+    // Pass the updated education data to the parent component
+    handleEducationInput({
+      ...educationData,
+      [name]: value,
+    });
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const newEducationDetail = { school, degree, startDate, endDate, score };
-    handleInputChange(newEducationDetail);
-
-    setSchool("");
-    setDegree("");
-    setStartDate("");
-    setEndDate("");
-    setScore("");
-
+    handleEducationInput(educationData); // Pass the complete education data
+    setEducationData({
+      school: "",
+      degree: "",
+      startDate: "",
+      endDate: "",
+      score: "",
+    });
+    addEducationData();
     toggleFormVisibility();
   };
 
@@ -46,37 +59,50 @@ export default function EducationForm({
       <form onSubmit={handleSubmit}>
         <div className="school">
           <label>School</label>
-          <input value={school} onChange={(e) => setSchool(e.target.value)} />
+          <input
+            name="school"
+            value={educationData.school}
+            onChange={handleChange}
+          />
         </div>
         <div className="Degree">
           <label>Degree</label>
-          <input value={degree} onChange={(e) => setDegree(e.target.value)} />
+          <input
+            name="degree"
+            value={educationData.degree}
+            onChange={handleChange}
+          />
         </div>
         <div className={styles.dates}>
           <div>
             <label>Start Date</label>
             <input
-              value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
+              name="startDate"
+              value={educationData.startDate}
+              onChange={handleChange}
             />
           </div>
           <div>
             <label>End Date</label>
             <input
-              value={endDate}
-              onChange={(e) => setEndDate(e.target.value)}
+              name="endDate"
+              value={educationData.endDate}
+              onChange={handleChange}
             />
           </div>
         </div>
         <div className="score">
           <label>Score</label>
-          <input value={score} onChange={(e) => setScore(e.target.value)} />
+          <input
+            name="score"
+            value={educationData.score}
+            onChange={handleChange}
+          />
         </div>
         <div className={styles.buttons}>
           <button className={styles.savebtn} type="submit">
             Submit
           </button>
-
           <button className={styles.cancelbtn} onClick={handleCancel}>
             Cancel
           </button>
