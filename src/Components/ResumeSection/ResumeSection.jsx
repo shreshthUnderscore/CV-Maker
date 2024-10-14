@@ -43,35 +43,33 @@ export default function ResumeSection({
 
           <div className={styles.EducationSection}>
             <h1>Education</h1>
-            {educationDetails.length > 0
-              ? educationDetails.map((education, index) => (
-                  <div key={index} className="education-item">
-                    <p>School: {education.school}</p>
-                    <p>Degree: {education.degree}</p>
-                    <p>
-                      Dates: {education.startDate} - {education.endDate}
-                    </p>
-                    <p>Location: {education.location}</p>
-                  </div>
-                ))
-              : console.log("no Education Details")}
+            {educationDetails.length > 0 &&
+              educationDetails.map((education, index) => (
+                <div key={index} className="education-item">
+                  <p>School: {education.school}</p>
+                  <p>Degree: {education.degree}</p>
+                  <p>
+                    Dates: {education.startDate} - {education.endDate}
+                  </p>
+                  <p>Score: {education.score}</p>
+                </div>
+              ))}
           </div>
 
-          <div className={styles.ExperieceSection}>
+          <div className={styles.ExperienceSection}>
             <h1>Experience</h1>
-            {experienceDetails.length > 0
-              ? experienceDetails.map((experience, index) => (
-                  <div key={index}>
-                    <p>School: {experience.companyName}</p>
-                    <p>Degree: {experience.positionTitle}</p>
-                    <p>
-                      Dates: {experience.startDate} - {experience.endDate}
-                    </p>
-                    <p>Location: {experience.location}</p>
-                    <p>Description: {experience.description}</p>
-                  </div>
-                ))
-              : console.log("no experience Details")}
+            {experienceDetails.length > 0 &&
+              experienceDetails.map((experience, index) => (
+                <div key={index} className="experience-item">
+                  <p>Company Name: {experience.companyName}</p>
+                  <p>Position Title: {experience.positionTitle}</p>
+                  <p>
+                    Dates: {experience.startDate} - {experience.endDate}
+                  </p>
+                  <p>Location: {experience.location}</p>
+                  <p>Description: {experience.description}</p>
+                </div>
+              ))}
           </div>
         </div>
       </div>

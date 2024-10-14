@@ -30,6 +30,8 @@ export default function Sidebar({
   const [isExperienceDetailsVisible, setExperienceVisibility] = useState(false);
   const [isExperienceFormVisible, setExperienceFormVisibility] =
     useState(false);
+  const [currentEducation, setCurrentEducation] = useState(null);
+  const [currentExperience, setCurrentExperience] = useState(null);
 
   const togglePersonalDetailsForm = () => {
     setPersonalDetailsVisibility((visibility) => !visibility);
@@ -55,11 +57,36 @@ export default function Sidebar({
   };
 
   const handleInputEducationChange = (newEducationData) => {
-    setEducationDetails([...educationData, newEducationData]);
+    if (currentEducation !== null) {
+      const updatedEducation = [...educationData];
+      updatedEducation[currentEducation] = newEducationData;
+      setEducationDetails(updatedEducation);
+    } else {
+      setEducationDetails([...educationData, newEducationData]);
+    }
+    setCurrentEducation(null);
+  };
+
+  const handleEditEducation = (index) => {
+    setCurrentEducation(index);
+    toggleEducationForm();
   };
 
   const handleInputExperienceChange = (newExperienceData) => {
-    setExperienceDetails([...experienceData, newExperienceData]);
+    if (currentExperience !== null) {
+      const updatedExperience = [...experienceData];
+      updatedExperience[currentExperience] = newExperienceData;
+      setExperienceDetails(updatedExperience);
+    } else {
+      setExperienceDetails([...experienceData, newExperienceData]);
+    }
+
+    setCurrentExperience(null);
+  };
+
+  const handleEditExperience = (index) => {
+    setCurrentExperience(index);
+    toggleExperienceDetailsForm();
   };
 
   return (
@@ -100,12 +127,16 @@ export default function Sidebar({
                 <ExpandedSection
                   buttonText="Add Field"
                   onClick={toggleEducationForm}
+                  data={educationData}
+                  handleEdit={handleEditEducation}
+                  title="school"
                 />
               )}
               {isEducationFormVisible && (
                 <EducationForm
                   handleInputChange={handleInputEducationChange}
                   toggleFormVisibility={toggleEducationForm}
+                  currentEducation={educationData[currentEducation]}
                 />
               )}
             </>
@@ -127,16 +158,18 @@ export default function Sidebar({
             <>
               {!isExperienceFormVisible && isExperienceDetailsVisible && (
                 <ExpandedSection
-                  collapseId="experience-collapse-section"
-                  buttonId="experience-add-button"
                   buttonText="Add Field"
                   onClick={toggleExperienceDetailsForm}
+                  data={experienceData}
+                  handleEdit={handleEditExperience}
+                  title="companyName"
                 />
               )}
               {isExperienceFormVisible && (
                 <ExperienceFrom
                   handleFormInput={handleInputExperienceChange}
                   toggleFormVisibility={toggleExperienceDetailsForm}
+                  currentExperience={experienceData[currentExperience]}
                 />
               )}
             </>

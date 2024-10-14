@@ -1,15 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./EducationForm.module.css";
 
 export default function EducationForm({
   handleInputChange,
   toggleFormVisibility,
+  currentEducation,
 }) {
   const [school, setSchool] = useState("");
   const [degree, setDegree] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [score, setScore] = useState("");
+
+  useEffect(() => {
+    if (currentEducation) {
+      setSchool(currentEducation.school);
+      setDegree(currentEducation.degree);
+      setStartDate(currentEducation.startDate);
+      setEndDate(currentEducation.endDate);
+      setScore(currentEducation.score);
+    }
+  }, [currentEducation]);
 
   const handleSubmit = (event) => {
     event.preventDefault();

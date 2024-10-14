@@ -20,7 +20,7 @@ export default function App() {
         setPersonalDetails={setPersonalDetails}
         educationData={educationDetails}
         setEducationDetails={setEducationDetails}
-        experienceData={educationDetails}
+        experienceData={experienceDetails}
         setExperienceDetails={setExperienceDetails}
       ></Sidebar>
       <ResumeSection

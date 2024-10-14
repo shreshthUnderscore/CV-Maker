@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./ExperienceForm.module.css";
 
 export default function ExperienceFrom({
   handleFormInput,
   toggleFormVisibility,
+  currentExperience,
 }) {
   const [companyName, setCompanyName] = useState("");
   const [positionTitle, setPostitionTitle] = useState("");
@@ -11,6 +12,17 @@ export default function ExperienceFrom({
   const [endDate, setEndDate] = useState("");
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
+
+  useEffect(() => {
+    if (currentExperience) {
+      setCompanyName(currentExperience.companyName);
+      setPostitionTitle(currentExperience.positionTitle);
+      setStartDate(currentExperience.startDate);
+      setEndDate(currentExperience.endDate);
+      setLocation(currentExperience.location);
+      setDescription(currentExperience.description);
+    }
+  }, [currentExperience]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -22,6 +34,7 @@ export default function ExperienceFrom({
       location,
       description,
     };
+
     handleFormInput(newExperienceData);
     setCompanyName("");
     setPostitionTitle("");
@@ -29,6 +42,7 @@ export default function ExperienceFrom({
     setEndDate("");
     setLocation("");
     setDescription("");
+
     toggleFormVisibility();
   };
 
