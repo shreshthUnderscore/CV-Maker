@@ -1,48 +1,56 @@
 import { useEffect, useState } from "react";
 import styles from "./ExperienceForm.module.css";
+import EducationForm from "../EducationForm/EducationForm";
 
 export default function ExperienceFrom({
-  handleFormInput,
   toggleFormVisibility,
-  currentExperience,
+  currentExperienceData,
+  handleExperienceInput,
+  addExperienceData,
 }) {
-  const [companyName, setCompanyName] = useState("");
-  const [positionTitle, setPostitionTitle] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [location, setLocation] = useState("");
-  const [description, setDescription] = useState("");
+  const [experienceData, setExperienceData] = useState({
+    companyName: "",
+    positionTitle: "",
+    startDate: "",
+    endDate: "",
+    location: "",
+    description: "",
+  });
 
   useEffect(() => {
-    if (currentExperience) {
-      setCompanyName(currentExperience.companyName);
-      setPostitionTitle(currentExperience.positionTitle);
-      setStartDate(currentExperience.startDate);
-      setEndDate(currentExperience.endDate);
-      setLocation(currentExperience.location);
-      setDescription(currentExperience.description);
+    if (currentExperienceData) {
+      setExperienceData(currentExperienceData);
     }
-  }, [currentExperience]);
+  }, [currentExperienceData]);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setExperienceData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+
+    // Pass the updated education data to the parent component
+    handleExperienceInput({
+      ...experienceData,
+      [name]: value,
+    });
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const newExperienceData = {
-      companyName,
-      positionTitle,
-      startDate,
-      endDate,
-      location,
-      description,
-    };
+    handleExperienceInput(experienceData);
 
-    handleFormInput(newExperienceData);
-    setCompanyName("");
-    setPostitionTitle("");
-    setStartDate("");
-    setEndDate("");
-    setLocation("");
-    setDescription("");
+    setExperienceData({
+      companyName: "",
+      positionTitle: "",
+      startDate: "",
+      endDate: "",
+      location: "",
+      description: "",
+    });
 
+    addExperienceData();
     toggleFormVisibility();
   };
 
@@ -57,45 +65,51 @@ export default function ExperienceFrom({
         <div className="Company Name">
           <label>Company Name</label>
           <input
-            value={companyName}
-            onChange={(e) => setCompanyName(e.target.value)}
+            name="companyName"
+            value={experienceData.companyName}
+            onChange={handleChange}
           />
         </div>
         <div className="Position Title">
           <label>Position Title</label>
           <input
-            value={positionTitle}
-            onChange={(e) => setPostitionTitle(e.target.value)}
+            name="positionTitle"
+            value={experienceData.positionTitle}
+            onChange={handleChange}
           />
         </div>
         <div className={styles.dates}>
           <div>
             <label>Start Date</label>
             <input
-              value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
+              name="startDate"
+              value={experienceData.startDate}
+              onChange={handleChange}
             />
           </div>
           <div>
             <label>End Date</label>
             <input
-              value={endDate}
-              onChange={(e) => setEndDate(e.target.value)}
+              name="endDate"
+              value={experienceData.endDate}
+              onChange={handleChange}
             />
           </div>
         </div>
         <div className="location">
           <label>Location</label>
           <input
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
+            name="location"
+            value={experienceData.location}
+            onChange={handleChange}
           />
         </div>
         <div className="description">
           <label>Description</label>
           <input
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            name="description"
+            value={experienceData.description}
+            onChange={handleChange}
           />
         </div>
 
