@@ -8,7 +8,7 @@
 
 2. Open the project directory `CV-Maker`
 
-3. Install dependences ``npm install`
+3. Install dependences ``npm install``
 
 4. Run the dev build `npm run dev`
    The application will be available at `localhost`
