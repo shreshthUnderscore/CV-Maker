@@ -10,5 +10,5 @@
 
 3. Install dependences ``npm install`
 
-4. Build and run the project `npm run build`
-   The application will be available at [localhost:3000](https://localhost:3000)
+4. Run the dev build `npm run dev`
+   The application will be available at `localhost`
