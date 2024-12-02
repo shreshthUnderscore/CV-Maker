@@ -1,21 +1,15 @@
 import { useEffect, useState } from "react";
 import styles from "./ExperienceForm.module.css";
-import EducationForm from "../EducationForm/EducationForm";
+
 
 export default function ExperienceFrom({
   toggleFormVisibility,
   currentExperienceData,
   handleExperienceInput,
   addExperienceData,
+  experienceData,
+  setExperienceData,
 }) {
-  const [experienceData, setExperienceData] = useState({
-    companyName: "",
-    positionTitle: "",
-    startDate: "",
-    endDate: "",
-    location: "",
-    description: "",
-  });
 
   useEffect(() => {
     if (currentExperienceData) {

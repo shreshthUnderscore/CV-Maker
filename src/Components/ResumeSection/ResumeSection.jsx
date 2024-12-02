@@ -52,17 +52,6 @@ export default function ResumeSection({
               <p>Score: {education.score}</p>
             </div>
           ))}
-          {currentEducationData && (
-            <div className="current-education-item">
-              <p>{currentEducationData.school}</p>
-              <p>{currentEducationData.degree}</p>
-              <p>
-                {currentEducationData.startDate}
-                {currentEducationData.endDate}
-              </p>
-              <p>{currentEducationData.score}</p>
-            </div>
-          )}
         </div>
         <div className={styles.ExperienceSection}>
           <h1>Experience</h1>
@@ -77,18 +66,6 @@ export default function ResumeSection({
               <p>Description: {experience.description}</p>
             </div>
           ))}
-          {currentExperienceData && (
-            <div className="current-experience-item">
-              <p>{currentExperienceData.companyName}</p>
-              <p>{currentExperienceData.positionTitle}</p>
-              <p>
-                {currentExperienceData.startDate}{" "}
-                {currentExperienceData.endDate}
-              </p>
-              <p>{currentExperienceData.location}</p>
-              <p>{currentExperienceData.description}</p>
-            </div>
-          )}
         </div>
       </div>
     </div>

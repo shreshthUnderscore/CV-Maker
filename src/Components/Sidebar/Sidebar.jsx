@@ -22,7 +22,11 @@ export default function Sidebar({
   addEducationData,
   currentExperienceData,
   handleExperienceInput,
+  experienceDataList,
   addExperienceData,
+  educationDataList,
+  setIsUpdate,
+  setUpdateIndex,
 }) {
   const [isPersonalDetailsFormVisible, setPersonalDetailsVisibility] =
     useState(false);
@@ -55,6 +59,45 @@ export default function Sidebar({
       [name]: value,
     }));
   };
+
+  const [educationData, setEducationData] = useState({
+    school: "",
+    degree: "",
+    startDate: "",
+    endDate: "",
+    score: "",
+  });
+
+  const [experienceData, setExperienceData] = useState({
+    companyName: "",
+    positionTitle: "",
+    startDate: "",
+    endDate: "",
+    location: "",
+    description: "",
+  });
+
+  const handleEditClick = (index) => {
+    setIsUpdate(true); // Enable update mode
+    setUpdateIndex(index); // Set the index for updating
+    
+    // Correctly access the education data from the list
+    const selectedEducation = educationDataList[index];
+    setEducationData(selectedEducation); // Prefill the form with the selected education data
+    
+    // Open the education form
+    toggleEducationForm();
+  };
+
+  const handleExperienceEditClick = (index) => {
+    setIsUpdate(true);
+    setUpdateIndex(index);
+
+    const selectedExperience = experienceDataList[index];
+    setExperienceData(selectedExperience);
+
+    toggleExperienceDetailsForm();
+  }
 
   return (
     <>
@@ -91,17 +134,29 @@ export default function Sidebar({
           {isEducationDetailsVisible && (
             <>
               {!isEducationFormVisible && isEducationDetailsVisible && (
-                <ExpandedSection
-                  buttonText="Add Field"
-                  onClick={toggleEducationForm}
-                />
+                <>
+                  {educationDataList.map((data, index) => (
+                    <button className={styles.editButton} key={index} onClick={ () => {
+                      handleEditClick(index);
+                    }}>
+                      {data.school}
+                    </button>
+                  ))}
+                  <ExpandedSection
+                    buttonText="Add Field"
+                    onClick={toggleEducationForm}
+                  />
+                </>
               )}
+
               {isEducationFormVisible && (
                 <EducationForm
                   toggleFormVisibility={toggleEducationForm}
-                  currentEducationData={currentEducationData}
+                  currentEducationData={educationData}
                   handleEducationInput={handleEducationInput}
                   addEducationData={addEducationData}
+                  educationData={educationData}
+                  setEducationData={setEducationData}
                 />
               )}
             </>
@@ -122,17 +177,29 @@ export default function Sidebar({
           {isExperienceDetailsVisible && (
             <>
               {!isExperienceFormVisible && isExperienceDetailsVisible && (
-                <ExpandedSection
-                  buttonText="Add Field"
-                  onClick={toggleExperienceDetailsForm}
-                />
+                <>
+                  {experienceDataList.map((data, index) => (
+                    <button key={index} onClick={()=>{
+                      handleExperienceEditClick(index);
+                    }}>
+                      {data.companyName}
+                    </button>
+                  ))}
+                  <ExpandedSection
+                    buttonText="Add Field"
+                    onClick={toggleExperienceDetailsForm}
+                  />
+
+                </>
               )}
               {isExperienceFormVisible && (
                 <ExperienceFrom
                   toggleFormVisibility={toggleExperienceDetailsForm}
-                  currentExperienceData={currentExperienceData}
+                  currentExperienceData={experienceData}
                   handleExperienceInput={handleExperienceInput}
                   addExperienceData={addExperienceData}
+                  experienceData={experienceData}
+                  setExperienceData={setExperienceData}
                 />
               )}
             </>
