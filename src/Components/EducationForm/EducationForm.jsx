@@ -45,6 +45,8 @@ export default function EducationForm({
   const handleCancel = (event) => {
     event.preventDefault();
     toggleFormVisibility();
+    setIsUpdate(false); // Reset update mode
+    setUpdateIndex(null);
   };
 
   return (

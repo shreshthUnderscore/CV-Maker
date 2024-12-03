@@ -41,29 +41,41 @@ export default function ResumeSection({
         </div>
         <hr />
         <div className={styles.EducationSection}>
-          <h1>Education</h1>
+          {educationDataList.length != 0 && (
+            <h1>Education</h1>)}
           {educationDataList.map((education, index) => (
-            <div key={index} className="education-item">
-              <p>School: {education.school}</p>
-              <p>Degree: {education.degree}</p>
+            <div key={index} className={styles.entry}>
+              <div>
+                <p className={styles.school}>{education.school}</p>
+                <p>{education.degree}</p>
+                <p>Grade: {education.score}</p>
+              </div>
               <p>
-                Dates: {education.startDate} - {education.endDate}
+                {education.startDate} - {education.endDate}
               </p>
-              <p>Score: {education.score}</p>
+              
             </div>
           ))}
         </div>
         <div className={styles.ExperienceSection}>
-          <h1>Experience</h1>
+          {experienceDataList.length != 0 && (<h1>Experience</h1>)}
           {experienceDataList.map((experience, index) => (
-            <div key={index} className="experience-item">
-              <p>Company Name: {experience.companyName}</p>
-              <p>Position Title: {experience.positionTitle}</p>
-              <p>
-                Dates: {experience.startDate} - {experience.endDate}
-              </p>
-              <p>Location: {experience.location}</p>
-              <p>Description: {experience.description}</p>
+            <div key={index} className={styles.entry}>
+              <div>
+                <span>
+                  <p className={styles.companyName}>{experience.companyName}</p>
+                  <p>| {experience.positionTitle}</p>
+                </span>
+                <p>{experience.description}</p>  
+              </div>
+              <div className={styles.lefty}>
+                <p>
+                  {experience.startDate} - {experience.endDate}
+                </p>
+                <p>{experience.location}</p>
+              </div>
+              
+              
             </div>
           ))}
         </div>

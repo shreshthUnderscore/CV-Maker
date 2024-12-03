@@ -179,7 +179,7 @@ export default function Sidebar({
               {!isExperienceFormVisible && isExperienceDetailsVisible && (
                 <>
                   {experienceDataList.map((data, index) => (
-                    <button key={index} onClick={()=>{
+                    <button className={styles.editButton} key={index} onClick={()=>{
                       handleExperienceEditClick(index);
                     }}>
                       {data.companyName}
