@@ -1,5 +1,4 @@
 import styles from "./Sidebar.module.css";
-
 import CustomButton from "../CustomButton/customButton";
 import Form from "../Form/Form";
 import EducationForm from "../EducationForm/EducationForm";
@@ -89,15 +88,32 @@ export default function Sidebar({
     toggleEducationForm();
   };
 
-  const handleExperienceEditClick = (index) => {
-    setIsUpdate(true);
-    setUpdateIndex(index);
+  const handleAddNewEducation = () => {
+    setIsUpdate(true); // Enable update mode
+    setUpdateIndex(educationDataList.length); // Set index to new entry
+    setEducationData({
+      school: "",
+      degree: "",
+      startDate: "",
+      endDate: "",
+      score: "",
+    }); // Prefill form with a blank object
+    toggleEducationForm(); // Open the form
+  };
 
-    const selectedExperience = experienceDataList[index];
-    setExperienceData(selectedExperience);
-
-    toggleExperienceDetailsForm();
-  }
+  const handleAddNewExperience = () => {
+    setIsUpdate(true); // Enable update mode
+    setUpdateIndex(experienceDataList.length); // Set index to new entry
+    setExperienceData({
+      companyName: "",
+      positionTitle: "",
+      startDate: "",
+      endDate: "",
+      location: "",
+      description: "",
+    }); // Prefill form with a blank object
+    toggleExperienceDetailsForm(); // Open the form
+  };
 
   return (
     <>
@@ -144,7 +160,7 @@ export default function Sidebar({
                   ))}
                   <ExpandedSection
                     buttonText="Add Field"
-                    onClick={toggleEducationForm}
+                    onClick={handleAddNewEducation}
                   />
                 </>
               )}
@@ -187,7 +203,7 @@ export default function Sidebar({
                   ))}
                   <ExpandedSection
                     buttonText="Add Field"
-                    onClick={toggleExperienceDetailsForm}
+                    onClick={handleAddNewExperience}
                   />
 
                 </>

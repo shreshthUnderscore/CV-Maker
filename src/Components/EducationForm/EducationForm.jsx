@@ -32,11 +32,11 @@ export default function EducationForm({
   const handleSubmit = (event) => {
     event.preventDefault();
     setEducationData({
-      school: "",
-      degree: "",
-      startDate: "",
-      endDate: "",
-      score: "",
+      school: " ",
+      degree: " ",
+      startDate: " ",
+      endDate: " ",
+      score: " ",
     });
     addEducationData();
     toggleFormVisibility();

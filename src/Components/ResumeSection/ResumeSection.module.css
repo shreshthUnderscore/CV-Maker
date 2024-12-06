@@ -99,3 +99,8 @@ span{
   align-items: baseline;
   gap: 1rem;
 }
+
+.description{
+  width: 100%;
+  flex-wrap: wrap;
+}

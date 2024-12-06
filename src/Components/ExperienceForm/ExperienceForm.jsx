@@ -100,10 +100,12 @@ export default function ExperienceFrom({
         </div>
         <div className="description">
           <label>Description</label>
-          <input
+          <textarea
             name="description"
             value={experienceData.description}
             onChange={handleChange}
+            cols="10"
+            rows="10"
           />
         </div>
 

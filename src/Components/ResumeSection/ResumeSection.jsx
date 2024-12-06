@@ -39,7 +39,7 @@ export default function ResumeSection({
             )}
           </div>
         </div>
-        <hr />
+        {personalDetails.fullname && (<hr/>)}
         <div className={styles.EducationSection}>
           {educationDataList.length != 0 && (
             <h1>Education</h1>)}
@@ -48,7 +48,7 @@ export default function ResumeSection({
               <div>
                 <p className={styles.school}>{education.school}</p>
                 <p>{education.degree}</p>
-                <p>Grade: {education.score}</p>
+                <p>{education.score}</p>
               </div>
               <p>
                 {education.startDate} - {education.endDate}
@@ -66,7 +66,7 @@ export default function ResumeSection({
                   <p className={styles.companyName}>{experience.companyName}</p>
                   <p>| {experience.positionTitle}</p>
                 </span>
-                <p>{experience.description}</p>  
+                <p className={styles.description}>{experience.description}</p>  
               </div>
               <div className={styles.lefty}>
                 <p>
