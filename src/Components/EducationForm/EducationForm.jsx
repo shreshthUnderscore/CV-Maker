@@ -6,14 +6,9 @@ export default function EducationForm({
   currentEducationData,
   handleEducationInput,
   addEducationData,
+  educationData,
+  setEducationData
 }) {
-  const [educationData, setEducationData] = useState({
-    school: "",
-    degree: "",
-    startDate: "",
-    endDate: "",
-    score: "",
-  });
 
   useEffect(() => {
     if (currentEducationData) {
@@ -23,27 +18,25 @@ export default function EducationForm({
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setEducationData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-
-    // Pass the updated education data to the parent component
-    handleEducationInput({
+    const updatedData = {
       ...educationData,
       [name]: value,
-    });
+    };
+  
+    setEducationData(updatedData);
+  
+    // Pass the updated education data to the parent component
+    handleEducationInput(updatedData);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    handleEducationInput(educationData); // Pass the complete education data
     setEducationData({
-      school: "",
-      degree: "",
-      startDate: "",
-      endDate: "",
-      score: "",
+      school: " ",
+      degree: " ",
+      startDate: " ",
+      endDate: " ",
+      score: " ",
     });
     addEducationData();
     toggleFormVisibility();
@@ -52,6 +45,8 @@ export default function EducationForm({
   const handleCancel = (event) => {
     event.preventDefault();
     toggleFormVisibility();
+    setIsUpdate(false); // Reset update mode
+    setUpdateIndex(null);
   };
 
   return (

@@ -1,21 +1,15 @@
 import { useEffect, useState } from "react";
 import styles from "./ExperienceForm.module.css";
-import EducationForm from "../EducationForm/EducationForm";
+
 
 export default function ExperienceFrom({
   toggleFormVisibility,
   currentExperienceData,
   handleExperienceInput,
   addExperienceData,
+  experienceData,
+  setExperienceData,
 }) {
-  const [experienceData, setExperienceData] = useState({
-    companyName: "",
-    positionTitle: "",
-    startDate: "",
-    endDate: "",
-    location: "",
-    description: "",
-  });
 
   useEffect(() => {
     if (currentExperienceData) {
@@ -106,10 +100,12 @@ export default function ExperienceFrom({
         </div>
         <div className="description">
           <label>Description</label>
-          <input
+          <textarea
             name="description"
             value={experienceData.description}
             onChange={handleChange}
+            cols="10"
+            rows="10"
           />
         </div>
 

@@ -39,56 +39,45 @@ export default function ResumeSection({
             )}
           </div>
         </div>
-        <hr />
+        {personalDetails.fullname && (<hr/>)}
         <div className={styles.EducationSection}>
-          <h1>Education</h1>
+          {educationDataList.length != 0 && (
+            <h1>Education</h1>)}
           {educationDataList.map((education, index) => (
-            <div key={index} className="education-item">
-              <p>School: {education.school}</p>
-              <p>Degree: {education.degree}</p>
+            <div key={index} className={styles.entry}>
+              <div>
+                <p className={styles.school}>{education.school}</p>
+                <p>{education.degree}</p>
+                <p>{education.score}</p>
+              </div>
               <p>
-                Dates: {education.startDate} - {education.endDate}
+                {education.startDate} - {education.endDate}
               </p>
-              <p>Score: {education.score}</p>
+              
             </div>
           ))}
-          {currentEducationData && (
-            <div className="current-education-item">
-              <p>{currentEducationData.school}</p>
-              <p>{currentEducationData.degree}</p>
-              <p>
-                {currentEducationData.startDate}
-                {currentEducationData.endDate}
-              </p>
-              <p>{currentEducationData.score}</p>
-            </div>
-          )}
         </div>
         <div className={styles.ExperienceSection}>
-          <h1>Experience</h1>
+          {experienceDataList.length != 0 && (<h1>Experience</h1>)}
           {experienceDataList.map((experience, index) => (
-            <div key={index} className="experience-item">
-              <p>Company Name: {experience.companyName}</p>
-              <p>Position Title: {experience.positionTitle}</p>
-              <p>
-                Dates: {experience.startDate} - {experience.endDate}
-              </p>
-              <p>Location: {experience.location}</p>
-              <p>Description: {experience.description}</p>
+            <div key={index} className={styles.entry}>
+              <div>
+                <span>
+                  <p className={styles.companyName}>{experience.companyName}</p>
+                  <p>| {experience.positionTitle}</p>
+                </span>
+                <p className={styles.description}>{experience.description}</p>  
+              </div>
+              <div className={styles.lefty}>
+                <p>
+                  {experience.startDate} - {experience.endDate}
+                </p>
+                <p>{experience.location}</p>
+              </div>
+              
+              
             </div>
           ))}
-          {currentExperienceData && (
-            <div className="current-experience-item">
-              <p>{currentExperienceData.companyName}</p>
-              <p>{currentExperienceData.positionTitle}</p>
-              <p>
-                {currentExperienceData.startDate}{" "}
-                {currentExperienceData.endDate}
-              </p>
-              <p>{currentExperienceData.location}</p>
-              <p>{currentExperienceData.description}</p>
-            </div>
-          )}
         </div>
       </div>
     </div>
